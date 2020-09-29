@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,
+  maximum-scale=5"
+    />
+
+    <link rel="icon" href="devchallenges.png" />
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://devchallenges.io/"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+
+    <title>Todo-App | Devchallenges</title>
+  </head>
+  <body>
+    <div class="l-container">
+      <main class="todo-app">
+        <nav class="navigation-todo">
+          <ul class="todo-list">
+            <li class="todo-item">All</li>
+            <li class="todo-item">Active</li>
+            <li class="todo-item">Competed</li>
+          </ul>
+        </nav>
+        <section class="panel-todo">
+          <div class="form-input__todo">
+            <input
+              type="text"
+              placeholder="add details"
+              id="input-todo"
+              class="todo-enter"
+            />
+            <button class="btn btn--primary" id="add">Add</button>
+          </div>
+          <div class="panel panel-all"></div>
+          <div class="panel panel-active">
+            <h1>Active Tasks</h1>
+          </div>
+          <div class="panel panel-completed">
+            <h1>Completed Tasks</h1>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>
