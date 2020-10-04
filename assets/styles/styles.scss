@@ -89,19 +89,27 @@ body {
   cursor: pointer;
   outline: none;
   padding: 1rem 2rem;
+  &:active {
+    transform: scale(0.98);
+  }
 }
 .btn--primary {
   background-color: #2f80ed;
   color: #fff;
   font-weight: bold;
-  &:active {
-    transform: scale(0.98);
-  }
   &:hover {
     background-color: darken(#2f80ed, 3);
   }
 }
 
+.btn--deleted {
+  background: #eb5757;
+  color: #fff;
+  font-weight: bold;
+  &:hover {
+    background-color: darken(#eb5757, 3);
+  }
+}
 .todo-item {
   display: flex;
   align-items: center;
@@ -112,4 +120,14 @@ body {
 }
 .complete {
   text-decoration: line-through;
+}
+
+.new-todo {
+  display: flex;
+  font-size: 1.6rem;
+  align-items: center;
+  padding: 0.5rem;
+  p {
+    margin: 1rem;
+  }
 }
