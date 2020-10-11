@@ -19,6 +19,12 @@ export function isComplete(id) {
   }
 }
 
+export function deleteById(id) {
+  // console.log(listTodos);
+  listTodos = listTodos.filter((todo) => todo.id !== id);
+  saveToStorage();
+}
+
 (function readToStorage() {
   listTodos = localStorage.getItem('todos')
     ? JSON.parse(localStorage.getItem('todos'))

@@ -1,14 +1,12 @@
-import { isComplete } from './index.js';
+import { isComplete, deleteById } from './index.js';
 
 const panelTodos = document.getElementById('list-todos');
 
 export function createComponent({ name, id, complete }) {
   return `
-        <li class="todo-view" data-id=${id}>
+        <li class="todo-view ${complete ? 'complete' : ''}" data-id=${id}>
             <input type="checkbox" ${complete ? 'checked' : ''} />
-              <label  class="todo ${
-                complete ? 'complete' : ''
-              }">${name} </label>
+              <label  class="todo ">${name} </label>
         ${
           complete
             ? '<img class="delete-icon" src="./delete-icon.svg" alt="delete icon"/>'
@@ -28,8 +26,6 @@ function moreEvents(e) {
   const getId = e.target.parentElement.getAttribute('data-id'),
     elName = e.target.localName,
     el = e.target;
-  //   console.log(e.target.localName);
-  //   console.log(e.target);
   switch (elName) {
     case 'label':
       console.log(el);
@@ -39,12 +35,13 @@ function moreEvents(e) {
       el.parentElement.classList.toggle('complete');
       break;
     case 'img':
-      console.log(el);
-
+      deleteById(+getId);
+      panelTodos.removeChild(el.parentElement);
       break;
     default:
       console.log('error');
       break;
   }
 }
+
 panelTodos.addEventListener('click', moreEvents);

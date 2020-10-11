@@ -24,36 +24,29 @@ function optionInTodo(e) {
   if (!e.target.classList.contains('todo-item')) return;
   listOptionTodos.map((item) => item.classList.remove('active-item'));
   e.target.classList.toggle('active-item');
-  const el = e.target.textContent.toLowerCase();
-  const some = document.querySelectorAll('.todo');
-  console.log(el);
-  switch (el) {
-    case 'all':
-      some.forEach((x) => {
-        x.parentElement.classList.remove('is-completed');
-      });
-      break;
-    case 'active':
-      some.forEach((x) => {
-        x.parentElement.classList.remove('is-completed');
-        if (x.classList.contains('complete')) {
-          x.parentElement.classList.add('is-completed');
-        }
-      });
 
-      break;
-    case 'completed':
-      some.forEach((x) => {
-        x.parentElement.classList.remove('is-completed');
-        if (!x.classList.contains('complete')) {
-          x.parentElement.classList.add('is-completed');
-        }
-      });
-      break;
+  const filter = e.target.textContent.toLowerCase();
 
-    default:
-      console.warn('sometimes happend a wrong');
-      break;
+  for (const el of panelTodos.children) {
+    el.classList.remove('is-completed');
+    const isCompleted = el.classList.contains('complete');
+    switch (filter) {
+      case 'all':
+        break;
+      case 'active':
+        if (isCompleted) {
+          el.classList.add('is-completed');
+        }
+        break;
+      case 'completed':
+        if (!isCompleted) {
+          el.classList.add('is-completed');
+        }
+
+        break;
+      default:
+        break;
+    }
   }
 }
 
@@ -61,18 +54,3 @@ listOptionTodos[0].classList.add('active-item');
 listItemsTodos.addEventListener('click', optionInTodo);
 inputTodo.addEventListener('keypress', buildTodoToKeyboard);
 btnTodo.addEventListener('click', buildTodoToBtn);
-// const createTodo = (value) => {
-//   list.addTodo(new Todo(value));
-//   renderDOM(new Todo(value), panelAll);
-//   console.log(list);
-// };
-
-// inputTodo.addEventListener('keypress', (e) => {
-//   const value = e.target.value;
-//   if (e.key !== 'Enter' || !value) {
-//     return;
-//   }
-//   createTodo(value);
-// });
-
-// list.list.forEach((todo) => renderDOM(todo, panelAll));

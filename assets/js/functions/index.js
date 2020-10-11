@@ -1,6 +1,6 @@
 import { createObj } from './object.todo.js';
 import { createComponent, renderDOM } from './render.function.js';
-import { listTodos, addTodo, isComplete } from './list.function.js';
+import { listTodos, addTodo, isComplete, deleteById } from './list.function.js';
 
 export {
   createObj,
@@ -9,4 +9,5 @@ export {
   addTodo,
   renderDOM,
   isComplete,
+  deleteById,
 };
