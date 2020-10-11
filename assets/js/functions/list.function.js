@@ -25,6 +25,11 @@ export function deleteById(id) {
   saveToStorage();
 }
 
+export function deleteCompleted() {
+  listTodos = listTodos.filter((todo) => todo.complete === !todo.complete);
+  saveToStorage();
+}
+
 (function readToStorage() {
   listTodos = localStorage.getItem('todos')
     ? JSON.parse(localStorage.getItem('todos'))

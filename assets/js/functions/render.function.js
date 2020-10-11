@@ -43,5 +43,8 @@ function moreEvents(e) {
       break;
   }
 }
+export const createBtn = () => {
+  return `<button class="btn btn--deleted">Delete All</button>`;
+};
 
 panelTodos.addEventListener('click', moreEvents);

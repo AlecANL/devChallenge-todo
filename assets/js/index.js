@@ -1,8 +1,15 @@
-import { createObj, listTodos, addTodo, renderDOM } from './functions/index.js';
+import {
+  createObj,
+  listTodos,
+  addTodo,
+  renderDOM,
+  deleteCompleted,
+} from './functions/index.js';
 
 const listOptionTodos = Array.from(document.querySelectorAll('.todo-item'));
 const listItemsTodos = document.getElementById('todo-list'),
-  panelTodos = document.getElementById('list-todos');
+  panelTodos = document.getElementById('list-todos'),
+  btnDeleted = document.querySelector('.btn--deleted');
 
 const inputTodo = document.getElementById('input-todo'),
   btnTodo = document.getElementById('add');
@@ -32,16 +39,19 @@ function optionInTodo(e) {
     const isCompleted = el.classList.contains('complete');
     switch (filter) {
       case 'all':
+        btnDeleted.classList.remove('show-btn');
         break;
       case 'active':
         if (isCompleted) {
           el.classList.add('is-completed');
+          btnDeleted.classList.remove('show-btn');
         }
         break;
       case 'completed':
         if (!isCompleted) {
           el.classList.add('is-completed');
         }
+        btnDeleted.classList.add('show-btn');
 
         break;
       default:
@@ -54,3 +64,12 @@ listOptionTodos[0].classList.add('active-item');
 listItemsTodos.addEventListener('click', optionInTodo);
 inputTodo.addEventListener('keypress', buildTodoToKeyboard);
 btnTodo.addEventListener('click', buildTodoToBtn);
+btnDeleted.addEventListener('click', () => {
+  deleteCompleted();
+  for (let i = panelTodos.children.length - 1; i >= 0; i--) {
+    const el = panelTodos.children[i];
+    if (el.classList.contains('complete')) {
+      panelTodos.removeChild(el);
+    }
+  }
+});

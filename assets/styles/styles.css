@@ -136,6 +136,7 @@ body {
   background: #eb5757;
   color: #fff;
   font-weight: bold;
+  display: none;
 }
 
 .btn--deleted:hover {
@@ -205,5 +206,9 @@ img {
 
 .is-completed {
   display: none;
+}
+
+.show-btn {
+  display: block;
 }
 /*# sourceMappingURL=styles.css.map */
