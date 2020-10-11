@@ -160,7 +160,7 @@ body {
   text-decoration: line-through;
 }
 
-.new-todo {
+.item-todo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -171,7 +171,7 @@ body {
   padding: 0.5rem;
 }
 
-.new-todo p {
+.item-todo p {
   margin: 1rem;
 }
 /*# sourceMappingURL=styles.css.map */
