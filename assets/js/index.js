@@ -1,58 +1,78 @@
-import { List, Todo } from './classes/index.js';
-import { renderDOM } from './classes/render.class.js';
+import { createObj, listTodos, addTodo, renderDOM } from './functions/index.js';
 
-export const list = new List();
+const listOptionTodos = Array.from(document.querySelectorAll('.todo-item'));
+const listItemsTodos = document.getElementById('todo-list'),
+  panelTodos = document.getElementById('list-todos');
 
-const panels = Array.from(document.querySelectorAll('.panel'));
-const items = Array.from(document.querySelectorAll('.todo-item'));
+const inputTodo = document.getElementById('input-todo'),
+  btnTodo = document.getElementById('add');
 
-const panelAll = document.querySelector('.panel-all'),
-  panelActive = document.querySelector('.panel-active'),
-  panelComplete = document.querySelector('.panel-completed');
+listTodos.map((todo) => renderDOM(todo, panelTodos));
 
-const inputTodo = document.getElementById('input-todo');
-const btn = document.getElementById('add');
-const formInput = document.querySelector('.form-input__todo');
+function buildTodoToKeyboard(e) {
+  if (e.key !== 'Enter') return;
+  const newObj = createObj(this.value);
+  addTodo(newObj);
+  renderDOM(newObj, panelTodos);
+}
+function buildTodoToBtn() {
+  if (!inputTodo.value) return;
+  console.log(inputTodo.value);
+}
 
-items.forEach((item, i) => {
-  panels[0].classList.add('active');
-  items[0].classList.add('active-item');
-  item.addEventListener('click', () => {
-    panels.map((panel) => panel.classList.remove('active'));
-    items.map((panel) => panel.classList.remove('active-item'));
+function optionInTodo(e) {
+  if (!e.target.classList.contains('todo-item')) return;
+  listOptionTodos.map((item) => item.classList.remove('active-item'));
+  e.target.classList.toggle('active-item');
+  const el = e.target.textContent.toLowerCase();
+  const some = document.querySelectorAll('.todo');
+  console.log(el);
+  switch (el) {
+    case 'all':
+      some.forEach((x) => {
+        x.parentElement.classList.remove('is-completed');
+      });
+      break;
+    case 'active':
+      some.forEach((x) => {
+        x.parentElement.classList.remove('is-completed');
+        if (x.classList.contains('complete')) {
+          x.parentElement.classList.add('is-completed');
+        }
+      });
 
-    panels[i].classList.add('active');
-    items[i].classList.add('active-item');
-    if (items[i] === items[2]) {
-      formInput.style.display = 'none';
-    } else {
-      formInput.style.display = 'block';
-    }
-  });
-});
+      break;
+    case 'completed':
+      some.forEach((x) => {
+        x.parentElement.classList.remove('is-completed');
+        if (!x.classList.contains('complete')) {
+          x.parentElement.classList.add('is-completed');
+        }
+      });
+      break;
 
-const createTodo = (value) => {
-  list.addTodo(new Todo(value));
-  renderDOM(new Todo(value), panelAll);
-  console.log(list);
-};
-
-inputTodo.addEventListener('keypress', (e) => {
-  const value = e.target.value;
-  if (e.key !== 'Enter' || !value) {
-    return;
+    default:
+      console.warn('sometimes happend a wrong');
+      break;
   }
-  createTodo(value);
-});
+}
 
-list.list.forEach((todo) => renderDOM(todo, panelAll));
+listOptionTodos[0].classList.add('active-item');
+listItemsTodos.addEventListener('click', optionInTodo);
+inputTodo.addEventListener('keypress', buildTodoToKeyboard);
+btnTodo.addEventListener('click', buildTodoToBtn);
+// const createTodo = (value) => {
+//   list.addTodo(new Todo(value));
+//   renderDOM(new Todo(value), panelAll);
+//   console.log(list);
+// };
 
-// panelActive.addEventListener('click', () => {
-//   list.list = list.list.filter((todo) => todo.complete !== true);
-//   list.list.forEach((data) => renderDOM(data, panelActive));
+// inputTodo.addEventListener('keypress', (e) => {
+//   const value = e.target.value;
+//   if (e.key !== 'Enter' || !value) {
+//     return;
+//   }
+//   createTodo(value);
 // });
-// items[1].addEventListener('click', () => {
-//   console.log('hello');
-//   list.list = list.list.filter((data) => data.complete !== true);
-//   list.list.forEach((d) => renderDOM(d, panelActive));
-// });
+
+// list.list.forEach((todo) => renderDOM(todo, panelAll));

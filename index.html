@@ -32,10 +32,10 @@
     <div class="l-container">
       <main class="todo-app">
         <nav class="navigation-todo">
-          <ul class="todo-list">
+          <ul class="todo-list" id="todo-list">
             <li class="todo-item">All</li>
             <li class="todo-item">Active</li>
-            <li class="todo-item">Competed</li>
+            <li class="todo-item">Completed</li>
           </ul>
         </nav>
         <section class="panel-todo">
@@ -48,20 +48,20 @@
             />
             <button class="btn btn--primary" id="add">Add</button>
           </div>
-          <div class="panel panel-all">
-            <li class="item-todo" data-id="1">
-              <div class="view">
-                <input type="checkbox" id="check" name="check-todo" />
-                <label name="check">${name}</label>
-              </div>
+        </section>
+        <section class="panel-todos">
+          <ul class="list-of-todos" id="list-todos">
+            <li class="todo-view">
+              <!-- <input type="checkbox" class="check" id="1" name="check" />
+              <label for="1" class="todo">Something</label>
+              <img
+                class="delete-icon"
+                src="./delete-icon.svg"
+                alt="delete icon"
+              />
+            </li> -->
             </li>
-          </div>
-          <div class="panel panel-active">
-            <h1>Active Tasks</h1>
-          </div>
-          <div class="panel panel-completed">
-            <!-- <h1>Completed Tasks</h1> -->
-          </div>
+          </ul>
         </section>
       </main>
     </div>
